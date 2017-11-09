@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Ear Trainer</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="styles.css">-->
+  </head>
+
+  <body>
+    <audio id="c4">
+      <source src="/pitch_files/c4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="cs4">
+      <source src="/pitch_files/cs4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="d4">
+      <source src="/pitch_files/d4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="ds4">
+      <source src="/pitch_files/ds4.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="e4">
+      <source src="/pitch_files/e4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="f4">
+      <source src="/pitch_files/f4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="fs4">
+      <source src="/pitch_files/fs4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="g4">
+      <source src="/pitch_files/g4.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="gs4">
+      <source src="/pitch_files/gs4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="a4">
+      <source src="/pitch_files/a4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="as4">
+      <source src="/pitch_files/as4.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="b4">
+      <source src="/pitch_files/b4.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="c5">
+      <source src="/pitch_files/c5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="cs5">
+      <source src="/pitch_files/cs5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="d5">
+      <source src="/pitch_files/d5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="ds5">
+      <source src="/pitch_files/ds5.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="e5">
+      <source src="/pitch_files/e5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="f5">
+      <source src="/pitch_files/f5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="fs5">
+      <source src="/pitch_files/fs5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="g5">
+      <source src="/pitch_files/g5.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="gs5">
+      <source src="/pitch_files/gs5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="a5">
+      <source src="/pitch_files/a5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="as5">
+      <source src="/pitch_files/as5.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="b5">
+      <source src="/pitch_files/b5.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="c6">
+      <source src="/pitch_files/c6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="cs6">
+      <source src="/pitch_files/cs6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="d6">
+      <source src="/pitch_files/d6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="ds6">
+      <source src="/pitch_files/ds6.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="e6">
+      <source src="/pitch_files/e6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="f6">
+      <source src="/pitch_files/f6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="fs6">
+      <source src="/pitch_files/fs6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="g6">
+      <source src="/pitch_files/g6.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="gs6">
+      <source src="/pitch_files/gs6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="a6">
+      <source src="/pitch_files/a6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="as6">
+      <source src="/pitch_files/as6.mp3" type="audio/mpeg">
+    </audio>
+     <audio id="b6">
+      <source src="/pitch_files/b6.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div id="app">
+    
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="lead-form">
+              <h1 class="text-center">Ear Training</h1>
+              <hr />
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" placeholder="Enter Melody Length" v-model="number">
+                  <input type="text" class="form-control" placeholder="Enter Milliseconds" v-model="speed">
+                  <input type="text" class="form-control" placeholder="Enter Answer" v-model="guess">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <!--<span class="city-span"></span>-->
+                  <button v-on:click="playButton" class="btn btn-primary btn-block" id="play-button">Play</button>
+                  <button @click="clear" class="btn btn-primary btn-block" id="clear-button">Clear</button>
+                  <select name="keys" v-model="key">
+                      <option value="Chromatic">Chromatic</option>
+                      <option value="White Keys">White Keys</option>
+                      <option value="Black Keys">Black Keys</option>
+                      <option value="C# Major">C# Major</option>
+                      <option value="B Major">B Major</option>
+                      <option value="A Major">A Major</option>
+                      <option value="E Major">E Major</option>
+                      <option value="F# Major">F# Major</option>
+                      <option value="A# Major">A# Major</option>
+                      <option value="D Major">D Major</option>
+                      <option value="F Major">F Major</option>
+                      <option value="G Major">G Major</option>
+                      <option value="D# Major">D# Major</option>
+                      <option value="G# Major">G# Major</option>
+                      <option value="C Blues Scale">C Blues Scale</option>
+                      <option value="First Octave">First Octave</option>
+                      <option value="Second Octave">Second Octave</option>
+                      <option value="Third Octave">Third Octave</option>
+
+                      
+                  </select>
+                  
+                  <input type="checkbox" id="checkbox" v-model="reveal">
+                  <label for="checkbox">Show Answer</label>
+                  
+                  <input type="checkbox" id="firstnote" v-model="first">
+                  <label for="firstnote">Show First Note</label>
+                  <span class="city-span">{{assessment}}</span>
+                </div>
+              </div>
+              <div>
+              <canvas id="myCanvas" width="457.1" height="326.5" style="border:1px solid #F6FCFE" v-lite-board="show"></canvas>
+              </div>
+              
+            </div><!-- end of .lead-form -->
+          </div> <!-- end of .col-md-6.col-md-offset-3 -->
+        </div> <!-- end of .row -->
+      </div> <!-- end of .container -->
+    </div> <!-- end of #app -->
+    <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+  </body>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      
+      data: {
+        
+        number: '',
+        melody: [],
+        count: '',
+        timer: '',
+        speed: '',
+        guess: '',
+        assessment: '',
+        reveal: '',
+        first: '',
+        show: '',
+        coordAtA: [],
+        coordAtC: [],
+        coordAtD: [],
+        coordAtE: [],
+        coordAtF: [],
+        coordAtG: [],
+        coordAtH: [],
+        colorOn: [],
+        melody_string: [],
+        check_string: '',
+        key: "Chromatic"
+        //key_array: []
+      },
+      
+      watch: {
+        
+        number: function(){
+          
+          if (this.number > 0 && this.number < 100){
+            
+            this.clear()
+            
+            
+          }
+          
+          if (this.number != this.melody.length){
+            
+            this.clear()
+            
+          }
+          
+          
+        },
+        
+        count: function(){
+          
+          if (this.count >= 0){
+            
+            this.showIt()
+            
+          }
+          
+          if (this.count == this.melody.length){
+            
+            this.show = this.melody[this.count-1]
+            clearInterval(this.timer)
+            
+          }
+          
+        },
+       
+        guess: function(){
+         
+          if(this.guess != false){
+              
+            this.assess()
+            
+          }
+         
+        },
+         
+        key: function(){
+          
+          if(this.key){
+          
+              this.clear()
+            
+          }
+    
+        }
+      
+      },
+      
+     directives: {
+       
+        liteBoard: {
+          
+        }
+        
+      },
+      
+     
+      methods: {
+        
+        assess: function(){
+          
+          this.assessment = ''
+          
+          if(this.guess == this.check_string){
+            
+            this.assessment = "correct!"
+            this.timedClear()
+            
+            
+          }
+          
+        }, 
+        
+       
+        
+        timedClear: _.debounce(function(){
+          
+          //var hold = this.number 
+          this.melody = []
+          this.assessment = ''
+          this.check_string = ''
+          this.melody_string = ''
+          this.makeMelody()
+          
+          
+        }, 1000),
+      
+        clear: function(){
+          
+          this.melody = []
+          this.assessment = ''
+          this.check_string = ''
+          this.melody_string = ''
+          this.makeMelody()
+          
+        },
+        
+        makeMelody: function() {
+          
+          var randomInt = ''
+          
+          var key_array = []
+          this.check_string = ''
+          this.melody_string = []
+          
+          if(this.key == "First Octave"){
+            
+            key_array = ["c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4", "c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4", "c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4"]
+
+          }
+          if(this.key == "Second Octave"){
+            
+            key_array = ["c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5", "c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5", "c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5"]
+
+            
+          }
+          if(this.key == "Third Octave"){
+            
+            key_array = ["c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6", "c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6", "c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6"]
+
+          }
+          
+          if(this.key == "Chromatic"){
+              
+            key_array = ["c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4", "c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5", "c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6"]
+            
+              
+          }
+          if(this.key == "White Keys"){
+              
+            key_array = ["c4", "c4", "d4", "d4", "e4", "f4", "f4", "g4", "g4", "a4", "a4", "b4", "c5", "c5", "d5", "d5", "e5", "f5", "f5", "g5", "g5", "a5", "a5", "b5", "c6", "c6", "d6", "d6", "e6", "f6", "f6", "g6", "g6", "a6", "a6", "b6"]
+            
+          }
+          if(this.key == "Black Keys"){
+              
+            key_array = ["cs4", "cs4", "ds4", "ds4", "ds4", "fs4", "fs4", "gs4", "gs4", "gs4", "as4", "as4", "cs5", "cs5", "ds5", "ds5", "ds5", "fs5", "fs5", "gs5", "gs5", "gs5", "as5", "as5", "cs6", "cs6", "ds6", "ds6", "ds6", "fs6", "fs6", "gs6", "gs6", "gs6", "as6", "as6"]
+
+          }
+          if(this.key == "C# Major"){
+              
+            key_array = ["c4", "cs4", "cs4", "ds4", "ds4", "f4", "fs4", "fs4", "gs4", "gs4", "as4", "as4", "c5", "cs5", "cs5", "ds5", "ds5", "f5", "fs5", "fs5", "gs5", "gs5", "as5", "as5", "c6", "cs6", "cs6", "ds6", "ds6", "f6", "fs6", "fs6", "gs6", "gs6", "as6", "as6"]
+
+          }
+          if(this.key == "B Major"){
+              
+            key_array = ["cs4", "cs4", "ds4", "ds4", "e4", "fs4", "fs4", "gs4", "gs4", "as4", "as4", "b4", "cs5", "cs5", "ds5", "ds5", "e5", "fs5", "fs5", "gs5", "gs5", "as5", "as5", "b5", "cs6", "cs6", "ds6", "ds6", "e6", "fs6", "fs6", "gs6", "gs6", "as6", "as6", "b6"]
+
+          }
+          if(this.key == "A Major"){
+              
+            key_array = ["cs4", "cs4", "d4", "d4", "e4", "fs4", "fs4", "gs4", "gs4", "a4", "a4", "b4", "cs5", "cs5", "d5", "d5", "e5", "fs5", "fs5", "gs5", "gs5", "a5", "a5", "b5", "cs6", "cs6", "d6", "d6", "e6", "fs6", "fs6", "gs6", "gs6", "a6", "a6", "b6"]
+    
+          }
+          if(this.key == "E Major"){
+              
+            key_array = ["cs4", "cs4", "ds4", "ds4", "e4", "fs4", "fs4", "gs4", "gs4", "a4", "a4", "b4", "cs5", "cs5", "ds5", "ds5", "e5", "fs5", "fs5", "gs5", "gs5", "a5", "a5", "b5", "cs6", "cs6", "ds6", "ds6", "e6", "fs6", "fs6", "gs6", "gs6", "a6", "a6", "b6"]
+
+          }
+          if(this.key == "F# Major"){
+            
+            key_array = ["cs4", "cs4", "ds4", "ds4", "f4", "fs4", "fs4", "gs4", "gs4", "as4", "as4", "b4", "cs5", "cs5", "ds5", "ds5", "f5", "fs5", "fs5", "gs5", "gs5", "as5", "as5", "b5", "cs6", "cs6", "ds6", "ds6", "f6", "fs6", "fs6", "gs6", "gs6", "as6", "as6", "b6"]
+          
+          }
+          if(this.key == "A# Major"){
+              
+            key_array = ["c4", "c4", "d4", "d4", "ds4", "f4", "f4", "g4", "g4", "a4", "as4", "as4", "c5", "c5", "d5", "d5", "ds5", "f5", "f5", "g5", "g5", "a5", "as5", "as5", "c6", "c6", "d6", "d6", "ds6", "f6", "f6", "g6", "g6", "a6", "as6", "as6"]
+          
+          }
+          if(this.key == "D Major"){
+              
+            key_array = ["cs4", "cs4", "d4", "d4", "e4", "fs4", "fs4", "g4", "g4", "a4", "a4", "b4", "cs5", "cs5", "d5", "d5", "e5", "fs5", "fs5", "g5", "g5", "a5", "a5", "b5", "cs6", "cs6", "d6", "d6", "e6", "fs6", "fs6", "g6", "g6", "a6", "a6", "b6"]
+          
+          }
+          if(this.key == "G Major"){
+          
+            key_array = ["c4", "c4", "d4", "d4", "e4", "fs4", "fs4", "g4", "g4", "a4", "a4", "b4", "c5", "c5", "d5", "d5", "e5", "fs5", "fs5", "g5", "g5", "a5", "a5", "b5", "c6", "c6", "d6", "d6", "e6", "fs6", "fs6", "g6", "g6", "a6", "a6", "b6"]
+          
+          }
+          if(this.key == "F Major"){
+              
+            key_array = ["c4", "c4", "d4", "d4", "e4", "f4", "f4", "g4", "g4", "a4", "a4", "as4", "c5", "c5", "d5", "d5", "e5", "f5", "f5", "g5", "g5", "a5", "a5", "as5", "c6", "c6", "d6", "d6", "e6", "f6", "f6", "g6", "g6", "a6", "a6", "as6"]
+          
+          }
+          if(this.key == "G# Major"){
+          
+            key_array = ["cs4", "cs4", "ds4", "ds4", "f4", "g4", "g4", "gs4", "gs4", "as4", "as4", "c4", "cs5", "cs5", "ds5", "ds5", "f5", "g5", "g5", "gs5", "gs5", "as5", "as5", "c5", "cs6", "cs6", "ds6", "ds6", "f6", "g6", "g6", "gs6", "gs6", "as6", "as6", "c6"]
+          
+          }
+          if(this.key == "D# Major"){
+          
+            key_array = ["c4", "c4", "d4", "ds4", "ds4", "f4", "g4", "g4", "gs4", "gs4", "as4", "as4", "c5", "c5", "d5", "ds5", "ds5", "f5", "g5", "g5", "gs5", "gs5", "as5", "as5", "c6", "c6", "d6", "ds6", "ds6", "f6", "g6", "g6", "gs6", "gs6", "as6", "as6"]
+            
+          }
+          if(this.key == "C Blues Scale"){
+            
+            key_array = ["c4", "c4", "ds4", "ds4", "f4", "f4", "fs4", "fs4", "g4", "g4", "as4", "as4", "c5", "c5", "ds5", "ds5", "f5", "f5", "fs5", "fs5", "g5", "g5", "as5", "as5", "c6", "c6", "ds6", "ds6", "f6", "f6", "fs6", "fs6", "g6", "g6", "as6", "as6"]
+          
+          }
+          
+          var keyCoordsA = [0, 43.1, 75.8, 120.2, 152.9, 195.9, 239, 271.7, 310.2, 342.9, 381.4, 414.1]
+          var keyCoordsC = [43.1, 32.7, 44.4, 32.7, 43.1, 43.1, 32.7, 38.5, 32.7, 38.5, 32.7, 43.1]
+          var keyCoordsD = [215.7, 215.5, 215.7, 215.5, 215.7, 215.7, 215.5, 215.7, 215.5, 215.7, 215.5, 215.7]
+          var keyCoordsE = [0, 43.1, 65.3, 120.2, 130.6, 195.9, 239, 261.2, 310.2, 326.5, 381.4, 391.8]
+          var keyCoordsF = [215.71, 326.5, 215.71, 326.5, 215.71, 215.5, 326.5, 215.71, 326.5, 215.71, 326.5, 215.71]
+          var keyCoordsG = [65.3, 32.7, 65.3, 32.7, 65.3, 65.3, 32.7, 65.3, 32.7, 65.3, 32.7, 65.3]
+          var keyCoordsH = [326.5, 215.5, 326.5, 215.5, 326.5, 326.5, 215.5, 326.5, 215.5, 326.5, 215.5, 326.5]
+          var keyColors = ["#FFCBDF", "#ECD61B", "#C5FD9F", "#FF8500", "#F2FC74", "#FFD275", "#8EDEAD", "#CB8807", "#CF3A76", "#F83B3B", "#30D1CA", "#C2EFF5"]
+          
+          var save = ''
+          
+          for (var i = 0; i < this.number; i++){
+            
+            randomInt = parseInt(Math.random() * 36)
+            this.melody[i] = key_array[randomInt]
+            save = this.melody[i].length
+            this.melody_string[i] = key_array[randomInt].slice(0,save-1)
+            
+            /*this.colorOn[i] = keyColors[randomInt]
+              this.coordAtA[i] = keyCoordsA[randomInt]
+              this.coordAtC[i] = keyCoordsC[randomInt]
+              this.coordAtD[i] = keyCoordsD[randomInt]
+              this.coordAtE[i] = keyCoordsE[randomInt]
+              this.coordAtF[i] = keyCoordsF[randomInt]
+              this.coordAtG[i] = keyCoordsG[randomInt]
+              this.coordAtH[i] = keyCoordsH[randomInt]
+              */
+          }
+          
+          this.check_string = this.melody_string.join("")
+          this.count = 0
+          
+        },
+        
+        showIt: function(){
+          
+          var i = this.count
+          
+          
+         /* if(this.count > 0 && this.reveal == true){
+            
+            this.show = this.melody[i-1]
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.fillStyle = this.colorOn[i-1]
+            ckey.fillRect(this.coordAtA[i-1],0,this.coordAtC[i-1],this.coordAtD[i-1])
+            ckey.fillRect(this.coordAtE[i-1],this.coordAtF[i-1],this.coordAtG[i-1],this.coordAtH[i-1])
+            ckey.lineWidth = 1
+            ckey.strokeStyle=this.colorOn[i-1]
+            ckey.strokeRect(this.coordAtE[i-1],this.coordAtF[i-1],this.coordAtG[i-1],this.coordAtH[i-1])
+            
+          }else if(this.reveal == true){
+            
+            this.show = this.melody[i]
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.fillStyle = this.colorOn[i]
+            ckey.fillRect(this.coordAtA[i],0,this.coordAtC[i],this.coordAtD[i])
+            ckey.fillRect(this.coordAtE[i],this.coordAtF[i],this.coordAtG[i],this.coordAtH[i])
+            ckey.lineWidth = 1
+            ckey.strokeStyle=this.colorOn[i]
+            ckey.strokeRect(this.coordAtE[i],this.coordAtF[i],this.coordAtG[i],this.coordAtH[i])
+            
+          }  
+          */
+        },
+        
+        nextOne: function() {
+          
+          var i = this.count
+          
+         /*if(this.count > 0 && this.reveal==true){
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.clearRect(0, 0, canvas.width, canvas.height)
+              
+          }else if(this.reveal== true){
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.clearRect(0, 0, canvas.width, canvas.height)
+            
+          }*/
+          
+          var note = this.melody[i]+""
+          var pitch = document.getElementById(note)
+          pitch.load()
+          pitch.play()
+          this.count = this.count+1
+          
+        },
+        
+        playButton: function(){
+        
+          this.count = 0
+          var end = this.melody.length-1
+          if(this.first == true){
+            this.assessment = this.melody[0]
+          }
+          /*if(this.reveal == true){
+            var canvas = document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.clearRect(0,0,canvas.width,canvas.height)
+          }*/
+          var millisec = this.speed
+          this.timer = setInterval(this.nextOne, millisec)
+          
+        }
+      }
+    })
+  </script>
+</html>

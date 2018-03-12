@@ -8,8 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
-    
+
+
   </head>
 
   <body>
@@ -230,7 +230,7 @@
       <source src="./pitch_files/bd.mp3" type="audio/mpeg">
     </audio>
     <div id="app">
-    
+
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
@@ -242,8 +242,8 @@
                   <input type="text" class="form-control" placeholder="Enter Melody Length" v-model="number">
                   <input type="text" class="form-control" placeholder="Enter Milliseconds" v-model="speed">
                   <input id="focus" type="text" class="form-control" placeholder="Enter Answer" v-model="guess">
-                  
-                  
+
+
                 </div>
               </div>
               <div class="row">
@@ -271,47 +271,55 @@
                       <option value="D# Major">D# Major</option>
                       <option value="G# Major">G# Major</option>
                       <option value="C Blues Scale">C Blues Scale</option>
-                      <option value="First Octave">First Octave</option>
-                      <option value="Second Octave">Second Octave</option>
-                      <option value="Third Octave">Third Octave</option>
                       <option value="Major Chords">Major Chords</option>
                       <option value="Minor Chords">Minor Chords</option>
-                      <option value="Diminished Chords">Diminished Chords</option>
-                      <option value="Major and Minor Chords">Major and Minor Chords</option>
-                      <option value="Major and Diminished Chords">Major and Diminished Chords</option>
-                      <option value="Minor and Diminished Chords">Minor and Diminished Chords</option>
+                      <option value="Dim Chords">Dim Chords</option>
+                      <option value="Maj and Min">Maj and Min</option>
+                      <option value="Maj and Dim">Maj and Dim</option>
+                      <option value="Min and Dim">Min and Dim</option>
                       <option value="C Major Chords">C Major Chords</option>
                       <option value="C Minor Chords">C Minor Chords</option>
                       <option value="B Major Chords">B Major Chords</option>
                       <option value="B Minor Chords">B Minor Chords</option>
                       <option value="Triad Chords">Triad Chords</option>
-                      <option value="A Harmonic Minor">A Harmonic Minor</option>
-                      <option value="A# Harmonic Minor">A# Harmonic Minor</option>
-                      <option value="B Harmonic Minor">B Harmonic Minor</option>
-                      <option value="C Harmonic Minor">C Harmonic Minor</option>
-                      <option value="C# Harmonic Minor">C# Harmonic Minor</option>
-                      <option value="D Harmonic Minor">D Harmonic Minor</option>
-                      <option value="D# Harmonic Minor">D# Harmonic Minor</option>
-                      <option value="E Harmonic Minor">E Harmonic Minor</option>
-                      <option value="F Harmonic Minor">F Harmonic Minor</option>
-                      <option value="F# Harmonic Minor">F# Harmonic Minor</option>
-                      <option value="G Harmonic Minor">G Harmonic Minor</option>
-                      <option value="G# Harmonic Minor">G# Harmonic Minor</option>
+                      <option value="A Harmonic Minor">A Harm Min</option>
+                      <option value="A# Harmonic Minor">A# Harm Min</option>
+                      <option value="B Harmonic Minor">B Harm Min</option>
+                      <option value="C Harmonic Minor">C Harm Min</option>
+                      <option value="C# Harmonic Minor">C# Harm Min</option>
+                      <option value="D Harmonic Minor">D Harm Min</option>
+                      <option value="D# Harmonic Minor">D# Harm Min</option>
+                      <option value="E Harmonic Minor">E Harm Min</option>
+                      <option value="F Harmonic Minor">F Harm Min</option>
+                      <option value="F# Harmonic Minor">F# Harm Min</option>
+                      <option value="G Harmonic Minor">G Harm Min</option>
+                      <option value="G# Harmonic Minor">G# Harm Min</option>
                   </select>
-                  
+
                   <input type="checkbox" id="checkbox" v-model="reveal">
-                  <label for="checkbox">Show Answer</label>
+                  <label for="checkbox">Answer</label>
                   <input type="checkbox" id="first" v-model="first">
-                  <label for="first">Show First Note</label>
-                  
-                  
+                  <label for="first">1st Note</label>
+                  <input type="checkbox" id="dubs" v-model="two_notes">
+                  <label for="dubs">2 Notes</label>
+                  <input type="checkbox" id="1st Octave" v-model="first_octave">
+                  <label for="1st Octave">1st Oct</label>
+                  <input type="checkbox" id="2nd Octave" v-model="second_octave">
+                  <label for="2nd Octave">2nd Oct</label>
+                  <input type="checkbox" id="3rd Octave" v-model="third_octave">
+                  <label for="3rd Octave">3rd Oct</label>
+                  <input type="checkbox" id="Stepwise" v-model="scale_mode">
+                  <label for="Stepwise">Stepwise</label>
+
+
+
                   <span class="city-span">{{assessment}}</span>
                 </div>
               </div>
               <!--<div>-->
-              
+
               <!--</div>-->
-              
+
             </div><!-- end of .lead-form -->
           </div> <!-- end of .col-md-6.col-md-offset-3 -->
         </div> <!-- end of .row -->
@@ -323,18 +331,18 @@
     </div> <!-- end of #app -->
     <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
     <!--<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>-->
-    
+
   </body>
 
   <script>
     window.onload = function(){
-      
+
       makeBoard()
-      
+
     }
-    
+
     function makeBoard(){
-      
+
       var canvas = document.getElementById("myCanvas")
       var key = canvas.getContext("2d")
       key.fillStyle = "#3b3d42"
@@ -344,7 +352,7 @@
       key.fillRect(239, 0, 32.7, 215.5)
       key.fillRect(310.2, 0, 32.7, 215.5)
       key.fillRect(381.4, 0, 32.7, 215.5)
-    
+
       key.moveTo(65.3, 215.7)
       key.lineTo(65.3, 326.5)
       key.moveTo(130.6, 215.7)
@@ -358,18 +366,20 @@
       key.moveTo(391.8, 215.7)
       key.lineTo(391.8, 326.5)
       key.stroke()
-      
+
     }
-    
+
+    var other_timer;
     var app = new Vue({
       el: '#app',
-      
+
       data: {
-        
+
         number: '',
         melody: [],
         count: '',
         timer: '',
+        other_timer: '',
         speed: '',
         guess: '',
         assessment: '',
@@ -386,233 +396,378 @@
         colorOn: [],
         melody_string: [],
         check_string: '',
-        key: "Chromatic"
+        key: "Chromatic",
+        two_notes: '',
+        first_octave: '',
+        second_octave: '',
+        third_octave: '',
+        scale_mode: ''
+
       },
-      
+
       watch: {
-        
-        number: function(){
-          
-          if (this.number > 0 && this.number < 100){
-            
-            this.clear()
-            
-            
+
+        first_octave: function(){
+
+          if(this.first_octave == true){
+            this.second_octave = false
+            this.third_octave = false
           }
-          
+
+        },
+
+        second_octave: function(){
+
+          if(this.second_octave == true){
+            this.first_octave = false
+            this.third_octave = false
+          }
+        },
+
+        third_octave: function(){
+
+          if(this.third_octave == true){
+            this.first_octave = false
+            this.second_octave = false
+          }
+
+        },
+
+        number: function(){
+
+          if (this.number > 0 && this.number < 100){
+
+            this.clear()
+
+
+          }
+
           var length_m = this.melody.length
           if (this.number != length_m){
-            
+
             this.clear()
-            
+
           }
-          
-          
+
+
         },
-        
+
         count: function(){
-          
+
           if (this.count >= 0){
-            
+
             this.showIt()
-            
+
           }
-          
+
           if (this.count == this.melody.length){
-            
+
             this.show = this.melody[this.count-1]
             clearInterval(this.timer)
-            
+
           }
-          
+
         },
-        
+
         guess: function(){
-         
+
           if(this.guess != false){
-              
+
             this.assess()
-            
+
           }
-         
+
         },
-         
+
         key: function(){
-          
+
           if(this.key){
-          
+
               this.clear()
-            
+
           }
-    
+
         },
-        
+
         reveal: function(){
-          
+
           if(this.reveal == true){
             this.first = false
           }
         },
-        
+
         first: function(){
-          
+
           if(this.first == true){
             this.reveal = false
           }
         }
-      
+
       },
-     
+
       methods: {
-        
+
         assess: function(){
-          
+
           this.assessment = ''
-          
+
           if(this.guess == this.check_string){
-            
+
             this.assessment = "correct!"
             this.guess = ""
-            setTimeout(this.clear, 1000)
-            
-            
+            this.clear()
+            clearTimeout()
+
           }
-          
-        }, 
-        
+
+        },
+
         clickKeys: function(event){
-          
+
           var canvas = document.getElementById("myCanvas")
           var ckey = canvas.getContext("2d")
-          
+
           var x = event.clientX
           var y = event.clientY
           var corner = canvas.offsetLeft
           var top = canvas.offsetTop
           var bottom = canvas.offsetTop
           var screen = event.screenY
-          
-          //this.assessment = screen + ", " + top + "," + corner + ", " + x + ", " + y
-          
-          
-          
+
+          if(event){
+
+            clearTimeout(this.other_timer)
+            this.clearBoard()
+
+          }
+
           if(x < 43.1+corner && y < bottom+230 || x < 68+corner && y > bottom+119){
-                
+        //"#FFCBDF", "#dd99ff", "#C5FD9F", "#3333ff", "#ffff1a", "#ff8533", "#b3cccc", "#8a8a5c", "#CF3A76", "#ff471a", "#00ccff", "#C2EFF5"
+
             var pitch = document.getElementById("c6")
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.fillStyle = "#FFCBDF"
+            ckey.fillRect(0,0,43.1,215.7)
+            ckey.fillRect(0,215.7,65.3,326.5)
+            ckey.lineWidth = 1
+            ckey.strokeStyle= "#FFCBDF"
+            ckey.strokeRect(0,215.7,65.3,326.5)
             pitch.load()
             pitch.play()
-    
+
+            //this.clearBoard()
+
             .catch(error => {
-                  
+
             })
-          
-          }else if(x < 75.8+corner && y < bottom+120){//blackKeyBottom){
-            
+
+          }else if(x < 75.8+corner && y < bottom+120){
+
             var pitch = document.getElementById("cs6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#dd99ff"
+            key.fillRect(43.1,0,32.7,215.5)
+            key.fillRect(43.1,326.5,32.7,215.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#dd99ff"
+            key.strokeRect(43.1,326.5,32.7,215.5)
             pitch.load()
             pitch.play()
-    
+            //setTimeout(this.clearBoard, 10000)
+            //this.clearBoard()
+
             .catch(error => {
-                  
+
             })
           }else if(x < 120.2+corner && y < bottom+230 || x < 132+corner && y > bottom+119){
-            
+
             var pitch = document.getElementById("d6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#C5FD9F"
+            key.fillRect(75.8,0,44.4,215.7)
+            key.fillRect(65.3,215.71,65.3,326.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#C5FD9F"
+            key.strokeRect(65.3,215.7,65.3,326.5)
             pitch.load()
             pitch.play()
-    
+            //setTimeout(this.clearBoard, 10000)
+
+
             .catch(error => {
-                  
+
             })
           }else if(x < 152.9+corner && y < bottom+120){
-            
+
             var pitch = document.getElementById("ds6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#3333ff"
+            key.fillRect(120.2,0,32.7,215.5)
+            key.fillRect(120.2,326.5,32.7,215.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#3333ff"
+            key.strokeRect(120.2,326.5,32.7,215.5)
             pitch.load()
             pitch.play()
-    
+            //setTimeout(this.clearBoard, 10000)
+
             .catch(error => {
-                  
+
             })
-            
+
           }else if(x < 197.5+corner && y < bottom+230){
-            
+
             var pitch = document.getElementById("e6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#ffff1a"
+            key.fillRect(152.9,0,43.1,215.7)
+            key.fillRect(130.6,215.7,65.3,326.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#ffff1a"
+            key.strokeRect(130.6,215.7,65.3,326.5)
             pitch.load()
             pitch.play()
-    
+            //setTimeout(this.clearBoard, 10000)
+
+
+
             .catch(error => {
-                  
+
             })
           }else if(x < 239+corner && y < bottom+230 || x < 263+corner && y > bottom+119){
-            
+
             var pitch = document.getElementById("f6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#ff8533"
+            key.fillRect(195.9,0,43.1,215.7)
+            key.fillRect(195.9,215.5,65.3,326.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#ff8533"
+            key.strokeRect(195.9,215.5,65.3,326.5)
             pitch.load()
             pitch.play()
-    
+            //setTimeout(this.clearBoard, 10000)
+
             .catch(error => {
-                  
+
             })
           }else if(x < 271.7+corner && y < bottom+120){
-            
+            //#6666ff
             var pitch = document.getElementById("fs6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#b3cccc"
+            key.fillRect(239,0,32.7,215.5)
+            key.fillRect(239,326.5,32.7,215.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#b3cccc"
+            key.strokeRect(239,326.5,32.7,215.5)
             pitch.load()
             pitch.play()
-    
+            //setTimeout(this.clearBoard, 10000)
+
             .catch(error => {
-                  
+
             })
-            
+
           }else if(x < 310.2+corner && y < bottom+230 || x < 329+corner && y > bottom+119){
-            
+
             var pitch = document.getElementById("g6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#8a8a5c"
+            key.fillRect(271.7,0,38.5,215.7)
+            key.fillRect(261.2,215.5,65.3,326.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#8a8a5c"
+            key.strokeRect(261.2,215.5,65.3,326.5)
             pitch.load()
             pitch.play()
-    
+
             .catch(error => {
-                  
+
             })
           }else if(x < 342.9+corner && y < bottom+120){
-            
+
             var pitch = document.getElementById("gs6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#CF3A76"
+            key.fillRect(310.2,0,32.7,215.7)
+            key.fillRect(310.2,326.5,32.7,215.71)
+            key.lineWidth = 1
+            key.strokeStyle = "#CF3A76"
+            key.strokeRect(310.2,326.5,32.7,215.5)
             pitch.load()
             pitch.play()
-    
+
             .catch(error => {
-                  
+
             })
           }else if(x < 381.4+corner && y < bottom+230 || x < 394+corner && y > bottom+119){
-            
+
             var pitch = document.getElementById("a6")
+            var canvas = document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#ff471a"
+            key.fillRect(342.9,0,38.5,215.7)
+            key.fillRect(326.5,215.5,65.3,326.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#ff471a"
+            key.strokeRect(326.5,215.5,65.3,326.5)
             pitch.load()
             pitch.play()
-    
+
             .catch(error => {
-                  
+
             })
           }else if(x < 414.1+corner && y < bottom+120){
-            
+
             var pitch = document.getElementById("as6")
+            var canvas = document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#00ccff"
+            key.fillRect(381.4,0,32.7,215.7)
+            key.fillRect(381.4,326.5,32.7,215.71)
+            key.lineWidth = 1
+            key.strokeStyle = "#00ccff"
+            key.strokeRect(381.4,326.5,32.7,215.5)
             pitch.load()
             pitch.play()
-    
+
             .catch(error => {
-                  
+
             })
           }else if(x < 457.1+corner && y < bottom+230){
-            
+
             var pitch = document.getElementById("b6")
+            var canvas= document.getElementById("myCanvas")
+            var key = canvas.getContext("2d")
+            key.fillStyle = "#C2EFF5"
+            key.fillRect(414.1,0,43.1,215.7)
+            key.fillRect(391.8,215.5,65.3,326.5)
+            key.lineWidth = 1
+            key.strokeStyle = "#C2EFF5"
+            key.strokeRect(391.8,215.5,65.3,326.5)
             pitch.load()
             pitch.play()
-    
+
             .catch(error => {
-                  
+
             })
           }
-         
+          this.other_timer = setTimeout(this.clearBoard, 7000)
+
         },
-        
+
         esketit: function(){
-          
+
           this.assessment = ''
           var guess_array = this.guess.split("")
           var answer_array = this.check_string.split("")
@@ -621,7 +776,7 @@
           var i = 0
           var guess_length = this.guess.length
           var check_string_length = this.check_string.length
-          
+
           while(i < guess_length){
             if(x == check_string_length){
               return
@@ -637,280 +792,313 @@
               x++
             }
           }
-          
+
           if(matchFound == check_string_length){
-            
+
             this.assessment = "correct!"
             this.guess = ""
             setTimeout(this.clear, 1000)
-            
+
           }else{
             return
           }
-          
+
         },
-        
+
+        clearBoard: function(){
+
+          var canvas= document.getElementById("myCanvas")
+          var ckey = canvas.getContext("2d")
+          ckey.clearRect(0, 0, canvas.width, canvas.height)
+          makeBoard()
+
+        },
+
+        assessment_clear: function(){
+
+          this.assessment = ""
+        },
+
         clear: function(){
-          
+
           this.melody = []
-          this.assessment = ''
+          setTimeout(this.assessment_clear, 1000)
           this.check_string = ''
           this.melody_string = ''
+          clearInterval(this.timer)
           this.makeMelody()
-          
+
         },
-        
+
         removeDups: function(){
-          
+
           var i = 0
           var x = 1
           var mel_length = this.melody_string.length
-          
+
           while(i < mel_length-1){
-            
+
             if(x == mel_length){
               i++
               x = i+1
             }
             if(this.melody_string[i] == this.melody_string[x]){
-              
+
               this.melody_string[i] = "*"
               i++
               x = i+1
-              
+
             }else{
               x++
             }
+
           }
-          
-         
+
           var array = this.melody_string.join("")
           var array2 = array.split("*")
-          
-          
+
+
           this.check_string = array2.join("")
-          //this.assessment = this.check_string
+
         },
-        
+
         makeMelody: function() {
-          
+
           var randomInt = ''
-          
-          var key_array = []
+
+          var key_array =  []
           this.check_string = ''
           this.melody_string = []
-          
-          var array_length = 36
-          
+
           if(this.key == "C Major Chords"){
-            
+
             key_array = ["cM", "dm", "em", "fM", "gM", "am", "bd", "cM", "dm", "em", "fM", "gM", "am", "bd", "cM", "dm", "em", "fM", "gM", "am", "bd", "cM", "dm", "em", "fM", "gM", "am", "bd", "cM", "dm", "em", "fM", "gM", "am", "bd", "cM"]
-            
+
           }
           if(this.key == "C Minor Chords"){
-            
+
             key_array = ["cm", "dd", "dsM", "fm", "gM", "gsM", "bd", "cm", "dd", "dsM", "fm", "gM", "gsM", "bd", "cm", "dd", "dsM", "fm", "gM", "gsM", "bd", "cm", "dd", "dsM", "fm", "gM", "gsM", "bd","cm", "dd", "dsM", "fm", "gM", "gsM", "bd", "cm"]
-          
+
           }
           if(this.key == "Whole Steps C"){
-            
+
             key_array = ["c4", "c4", "d4", "d4", "e4", "e4", "fs4", "fs4", "gs4", "gs4", "as4", "as4", "c5", "c5", "d5", "d5", "e5", "e5", "fs5", "fs5", "gs5", "gs5", "as5", "as5", "c6", "c6", "d6", "d6", "e6", "e6", "fs6", "fs6", "gs6", "gs6", "as6", "as6"]
-            
+
           }
           if(this.key == "Whole Steps C#"){
-            
+
             key_array = ["cs4", "cs4", "ds4", "ds4", "f4", "f4", "g4", "g4", "a4", "a4", "b4", "b4", "cs5", "cs5", "ds5", "ds5", "f5", "f5", "g5", "g5", "a5", "a5", "b5", "b5", "cs6", "cs6", "ds6", "ds6", "f6", "f6", "g6", "g6", "a6", "a6", "b6", "b6"]
-            
+
           }
-          if(this.key == "Major and Diminished Chords"){
-            
+          if(this.key == "Maj and Dim"){
+
             key_array = ["cM", "csM", "dM", "dsM", "eM", "fM", "fsM", "gM", "gsM", "aM", "asM", "bM", "cd", "csd", "dd", "ed", "fd", "fsd", "gd", "gsd", "ad", "asd", "bd", "cd", "csM", "dd", "dsM", "ed", "fM", "fsd", "gM", "gsd", "aM", "asd", "bM"]
-          
+
           }
-          if(this.key == "Minor and Diminished Chords"){
-            
+          if(this.key == "Min and Dim"){
+
             key_array = ["cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm", "cd", "csd", "dd", "ed", "fd", "fsd", "gd", "gsd", "ad", "asd", "bd", "cm", "csd", "dm", "dsd", "em", "fd", "fsm", "gd", "gsm", "ad", "asm", "bd"]
-            
+
           }
-          if(this.key == "Major and Minor Chords"){
-            
+          if(this.key == "Maj and Min"){
+
             key_array = ["cM", "csM", "dM", "dsM", "eM", "fM", "fsM", "gM", "gsM", "aM", "asM", "bM", "cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm", "cM", "csm", "dM", "dsm", "eM", "fm", "fsM", "gm", "gsM", "am", "asM", "bm"]
-          
+
           }
-          if(this.key == "Diminished Chords"){
-          
+          if(this.key == "Dim Chords"){
+
             key_array = ["cd", "csd", "dd", "ed", "fd", "fsd", "gd", "gsd", "ad", "asd", "bd", "cd", "csd", "dd", "ed", "fd", "fsd", "gd", "gsd", "ad", "asd", "bd", "cd", "csd", "dd", "ed", "fd", "fsd", "gd", "gsd", "ad", "asd", "bd"]
-           
+
           }
           if(this.key == "Triad Chords"){
-            
+
             key_array = ["cM", "csM", "dM", "dsM", "eM", "fM", "fsM", "gM", "gsM", "aM", "asM", "bM", "cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm", "cd", "csd", "dd", "ed", "fd", "fsd", "gd", "gsd", "ad", "asd", "bd"]
-          
+
           }
           if(this.key == "Minor Chords"){
-          
-            key_array = ["cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm", "cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm", "cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm"] 
-          
+
+            key_array = ["cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm", "cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm", "cm", "csm", "dm", "dsm", "em", "fm", "fsm", "gm", "gsm", "am", "asm", "bm"]
+
           }
           if(this.key == "Major Chords"){
-            
+
             key_array = ["cM", "csM", "dM", "dsM", "eM", "fM", "fsM", "gM", "gsM", "aM", "asM", "bM", "cM", "csM", "dM", "dsM", "eM", "fM", "fsM", "gM", "gsM", "aM", "asM", "bM", "cM", "csM", "dM", "dsM", "eM", "fM", "fsM", "gM", "gsM", "aM", "asM", "bM"]
-            
-          }
-          if(this.key == "First Octave"){
-            
-            key_array = ["c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4", "c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4", "c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4"]
 
           }
-          if(this.key == "Second Octave"){
-            
-            key_array = ["c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5", "c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5", "c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5"]
-
-            
-          }
-          if(this.key == "Third Octave"){
-            
-            key_array = ["c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6", "c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6", "c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6"]
-
-          }
-          
           if(this.key == "Chromatic"){
-              
+
             key_array = ["c4", "cs4", "d4", "ds4", "e4", "f4", "fs4", "g4", "gs4", "a4", "as4", "b4", "c5", "cs5", "d5", "ds5", "e5", "f5", "fs5", "g5", "gs5", "a5", "as5", "b5", "c6", "cs6", "d6", "ds6", "e6", "f6", "fs6", "g6", "gs6", "a6", "as6", "b6"]
-            
+
           }
           if(this.key == "White Keys"){
-              
-            key_array = ["c4", "c4", "d4", "d4", "e4", "f4", "f4", "g4", "g4", "a4", "a4", "b4", "c5", "c5", "d5", "d5", "e5", "f5", "f5", "g5", "g5", "a5", "a5", "b5", "c6", "c6", "d6", "d6", "e6", "f6", "f6", "g6", "g6", "a6", "a6", "b6"]
-            
+
+            key_array = ["c4", "d4", "e4", "f4", "g4", "a4", "b4", "c5", "d5", "e5", "f5", "g5", "a5", "b5", "c6", "d6", "e6", "f6", "g6", "a6", "b6"]
+
           }
           if(this.key == "Black Keys"){
-              
-            key_array = ["cs4", "cs4", "ds4", "ds4", "ds4", "fs4", "fs4", "gs4", "gs4", "gs4", "as4", "as4", "cs5", "cs5", "ds5", "ds5", "ds5", "fs5", "fs5", "gs5", "gs5", "gs5", "as5", "as5", "cs6", "cs6", "ds6", "ds6", "ds6", "fs6", "fs6", "gs6", "gs6", "gs6", "as6", "as6"]
+
+            key_array = ["cs4", "ds4", "fs4", "gs4", "as4", "cs5", "ds5", "fs5", "gs5", "as5", "cs6", "ds6", "fs6", "gs6", "as6"]
 
           }
           if(this.key == "C# Major"){
-              
-            key_array = ["c4", "cs4", "cs4", "ds4", "ds4", "f4", "fs4", "fs4", "gs4", "gs4", "as4", "as4", "c5", "cs5", "cs5", "ds5", "ds5", "f5", "fs5", "fs5", "gs5", "gs5", "as5", "as5", "c6", "cs6", "cs6", "ds6", "ds6", "f6", "fs6", "fs6", "gs6", "gs6", "as6", "as6"]
+
+            key_array = ["c4", "cs4", "ds4", "f4", "fs4", "gs4", "as4", "c5", "cs5", "ds5", "f5", "fs5", "gs5", "as5", "c6", "cs6", "ds6", "f6", "fs6", "gs6", "as6"]
 
           }
           if(this.key == "B Major"){
-              
-            key_array = ["cs4", "cs4", "ds4", "ds4", "e4", "fs4", "fs4", "gs4", "gs4", "as4", "b4", "b4", "cs5", "cs5", "ds5", "ds5", "e5", "fs5", "fs5", "gs5", "gs5", "as5", "b5", "b5", "cs6", "cs6", "ds6", "ds6", "e6", "fs6", "fs6", "gs6", "gs6", "as6", "b6", "b6"]
+
+            key_array = ["b4", "cs4", "ds4", "e4", "fs4", "gs4", "as4", "b5", "cs5", "ds5", "e5", "fs5", "gs5", "as5", "b6", "cs6", "ds6", "e6", "fs6", "gs6", "as6"]
 
           }
           if(this.key == "A Major"){
-              
-            key_array = ["cs4", "cs4", "d4", "d4", "e4", "fs4", "fs4", "gs4", "gs4", "a4", "a4", "b4", "cs5", "cs5", "d5", "d5", "e5", "fs5", "fs5", "gs5", "gs5", "a5", "a5", "b5", "cs6", "cs6", "d6", "d6", "e6", "fs6", "fs6", "gs6", "gs6", "a6", "a6", "b6"]
-    
+
+            key_array = ["a4", "b4", "cs4", "d4", "e4", "fs4", "gs4", "a5", "b5", "cs5", "d5", "e5", "fs5", "gs5", "a6", "b6", "cs6", "d6", "e6", "fs6", "gs6"]
+
           }
           if(this.key == "E Major"){
-              
-            key_array = ["cs4", "cs4", "ds4", "ds4", "e4", "fs4", "fs4", "gs4", "gs4", "a4", "a4", "b4", "cs5", "cs5", "ds5", "ds5", "e5", "fs5", "fs5", "gs5", "gs5", "a5", "a5", "b5", "cs6", "cs6", "ds6", "ds6", "e6", "fs6", "fs6", "gs6", "gs6", "a6", "a6", "b6"]
+
+            key_array = ["e4", "fs4", "gs4", "a4", "b4", "cs4", "ds4", "e5", "fs5", "gs5", "a5", "b5", "cs5", "ds5", "e6", "fs6", "gs6", "a6", "b6", "cs6", "ds6"]
 
           }
           if(this.key == "F# Major"){
-            
-            key_array = ["cs4", "cs4", "ds4", "ds4", "f4", "fs4", "fs4", "gs4", "gs4", "as4", "as4", "b4", "cs5", "cs5", "ds5", "ds5", "f5", "fs5", "fs5", "gs5", "gs5", "as5", "as5", "b5", "cs6", "cs6", "ds6", "ds6", "f6", "fs6", "fs6", "gs6", "gs6", "as6", "as6", "b6"]
-          
+
+            key_array = ["fs4", "gs4", "as4", "b4", "cs4", "ds4", "f4", "fs5", "gs5", "as5", "b5", "cs5", "ds5", "f5", "fs6", "gs6", "as6", "b6", "cs6", "ds6", "f6"]
+
           }
           if(this.key == "A# Major"){
-              
-            key_array = ["c4", "c4", "d4", "d4", "ds4", "f4", "f4", "g4", "g4", "a4", "as4", "as4", "c5", "c5", "d5", "d5", "ds5", "f5", "f5", "g5", "g5", "a5", "as5", "as5", "c6", "c6", "d6", "d6", "ds6", "f6", "f6", "g6", "g6", "a6", "as6", "as6"]
-          
+
+            key_array = ["as4", "c4", "d4", "ds4", "f4", "g4", "a4", "as5", "c5", "d5", "ds5", "f5", "g5", "a5", "as6", "c6", "d6", "ds6", "f6", "g6", "a6"]
+
           }
           if(this.key == "D Major"){
-              
-            key_array = ["cs4", "cs4", "d4", "d4", "e4", "fs4", "fs4", "g4", "g4", "a4", "a4", "b4", "cs5", "cs5", "d5", "d5", "e5", "fs5", "fs5", "g5", "g5", "a5", "a5", "b5", "cs6", "cs6", "d6", "d6", "e6", "fs6", "fs6", "g6", "g6", "a6", "a6", "b6"]
-          
+
+            key_array = ["d4", "e4", "fs4", "g4", "a4", "b4", "cs4", "d5", "e5", "fs5", "g5", "a5", "b5", "cs5", "d6", "e6", "fs6", "g6", "a6", "b6", "cs6"]
+
           }
           if(this.key == "G Major"){
-          
-            key_array = ["c4", "c4", "d4", "d4", "e4", "fs4", "fs4", "g4", "g4", "a4", "a4", "b4", "c5", "c5", "d5", "d5", "e5", "fs5", "fs5", "g5", "g5", "a5", "a5", "b5", "c6", "c6", "d6", "d6", "e6", "fs6", "fs6", "g6", "g6", "a6", "a6", "b6"]
-          
+
+            key_array = ["g4", "a4", "b4", "c4", "d4", "e4", "fs4", "g5", "a5", "b5", "c5", "d5", "e5", "fs5", "g6", "a6", "b6", "c6", "d6", "e6", "fs6"]
+
           }
           if(this.key == "F Major"){
-              
-            key_array = ["c4", "c4", "d4", "d4", "e4", "f4", "f4", "g4", "g4", "a4", "a4", "as4", "c5", "c5", "d5", "d5", "e5", "f5", "f5", "g5", "g5", "a5", "a5", "as5", "c6", "c6", "d6", "d6", "e6", "f6", "f6", "g6", "g6", "a6", "a6", "as6"]
-          
+
+            key_array = ["f4", "g4", "a4", "as4", "c4", "d4", "e4", "f5", "g5", "a5", "as5", "c5", "d5", "e5", "f6", "g6", "a6", "as6", "c6", "d6", "e6"]
+
           }
           if(this.key == "G# Major"){
-          
-            key_array = ["cs4", "cs4", "ds4", "ds4", "f4", "g4", "g4", "gs4", "gs4", "as4", "as4", "c4", "cs5", "cs5", "ds5", "ds5", "f5", "g5", "g5", "gs5", "gs5", "as5", "as5", "c5", "cs6", "cs6", "ds6", "ds6", "f6", "g6", "g6", "gs6", "gs6", "as6", "as6", "c6"]
-          
+
+            key_array = ["gs4", "as4", "c4", "cs4", "ds4", "f4", "g4", "gs5", "as5", "c5", "cs5", "ds5", "f5", "g5", "gs6", "as6", "c6", "cs6", "ds6", "f6", "g6"]
+
           }
           if(this.key == "D# Major"){
-          
-            key_array = ["c4", "c4", "d4", "ds4", "ds4", "f4", "g4", "g4", "gs4", "gs4", "as4", "as4", "c5", "c5", "d5", "ds5", "ds5", "f5", "g5", "g5", "gs5", "gs5", "as5", "as5", "c6", "c6", "d6", "ds6", "ds6", "f6", "g6", "g6", "gs6", "gs6", "as6", "as6"]
-            
+
+            key_array = ["ds4", "f4", "g4", "gs4", "as4", "c4", "d4", "ds5", "f5", "g5", "gs5", "as5", "c5", "d5", "ds6", "f6", "g6", "gs6", "as6", "c6", "d6"]
+
           }
           if(this.key == "C Blues Scale"){
-            
-            key_array = ["c4", "c4", "ds4", "ds4", "f4", "f4", "fs4", "fs4", "g4", "g4", "as4", "as4", "c5", "c5", "ds5", "ds5", "f5", "f5", "fs5", "fs5", "g5", "g5", "as5", "as5", "c6", "c6", "ds6", "ds6", "f6", "f6", "fs6", "fs6", "g6", "g6", "as6", "as6"]
-          
+
+            key_array = ["c4", "ds4", "f4", "fs4", "g4", "as4", "c5", "ds5", "f5", "fs5", "g5", "as5", "c6", "ds6", "f6", "fs6", "g6", "as6"]
+
           }
           if(this.key == "A Harmonic Minor"){
-            
+
             key_array = ["c4", "c4", "d4", "d4", "e4", "f4", "f4", "gs4", "gs4", "a4", "a4", "b4", "c5", "c5", "d5", "e5", "e5", "f5", "f5", "gs5", "gs5", "a5", "b5", "b5", "c6", "c6", "d6", "d6", "e6", "f6", "f6", "gs6", "gs6", "a6", "a6", "b6"]
-          
-            
+
           }
           if(this.key == "A# Harmonic Minor"){
-            
+
             key_array = ["c4", "cs4", "cs4", "ds4", "ds4", "f4", "fs4", "fs4", "a4", "a4", "as4", "as4", "c5", "cs5", "cs5", "ds5", "ds5", "f5", "fs5", "fs5", "a5", "a5", "as5", "as5", "c6", "cs6", "cs6", "ds6", "ds6", "f6", "fs6", "fs6", "a6", "a6", "as6", "as6"]
-          
+
           }
           if(this.key == "B Harmonic Minor"){
-            
+
             key_array = ["cs4", "d4", "d4", "e4", "e4", "fs4", "g4", "g4", "as4", "as4", "b4", "b4", "cs5", "d5", "d5", "e5", "e5", "fs5", "g5", "g5", "as5", "as5", "b5", "b5", "cs6", "d6", "d6", "e6", "e6", "fs6", "g6", "g6", "as6", "as6", "b6", "b6"]
-            
+
           }
           if(this.key == "C Harmonic Minor"){
-            
+
             key_array = ["c4", "c4", "d4", "d4", "ds4", "ds4", "f4", "g4", "g4", "gs4", "b4", "b4", "c5", "c5", "d5", "d5", "ds5", "ds5", "f5", "g5", "g5", "gs5", "b5", "b5", "c6", "c6", "d6", "d6", "ds6", "ds6", "f6", "g6", "g6", "gs6", "b6", "b6"]
-            
+
           }
           if(this.key == "C# Harmonic Minor"){
-            
+
             key_array = ["c4", "c4", "cs4", "cs4", "ds4", "ds4", "e4", "e4", "fs4", "gs4", "gs4", "a4", "c5", "c5", "cs5", "cs5", "ds5", "ds5", "e5", "e5", "fs5", "gs5", "gs5", "a5", "c6", "c6", "cs6", "cs6", "ds6", "ds6", "e6", "e6", "fs6", "gs6", "gs6", "a6"]
-            
+
           }
           if(this.key == "D Harmonic Minor"){
-            
+
             key_array = ["cs4", "cs4", "d4", "d4", "e4", "e4", "f4", "f4", "g4", "a4", "a4", "as4", "cs5", "cs5", "d5", "d5", "e5", "e5", "f5", "f5", "g5", "a5", "a5", "as5", "cs6", "cs6", "d6", "d6", "e6", "e6", "f6", "f6", "g6", "a6", "a6", "as6"]
-            
+
           }
           if(this.key == "D# Harmonic Minor"){
-            
+
             key_array = ["d4", "d4", "ds4", "ds4", "f4", "f4", "fs4", "fs4", "gs4", "as4", "as4", "b4", "d5", "d5", "ds5", "ds5", "f5", "f5", "fs5", "fs5", "gs5", "as5", "as5", "b5", "d6", "d6", "ds6", "ds6", "f6", "f6", "fs6", "fs6", "gs6", "as6", "as6", "b6"]
-            
+
           }
           if(this.key == "E Harmonic Minor"){
-            
+
             key_array = ["c4", "d4", "d4", "e4", "e4", "fs4", "fs4", "g4", "g4", "a4", "b4", "b4", "c5", "d5", "d5", "e5", "e5", "fs5", "fs5", "g5", "g5", "a5", "b5", "b5", "c6", "d6", "d6", "e6", "e6", "fs6", "fs6", "g6", "g6", "a6", "b6", "b6"]
-            
+
           }
           if(this.key == "F Harmonic Minor"){
-            
+
             key_array = ["c4", "c4", "cs4", "ds4", "ds4", "f4", "f4", "g4", "g4", "gs4", "gs4", "as4", "c5", "c5", "cs5", "ds5", "ds5", "f5", "f5", "g5", "g5", "gs5", "gs5", "as5", "c6", "c6", "cs6", "ds6", "ds6", "f6", "f6", "g6", "g6", "gs6", "gs6", "as6"]
-            
+
           }
           if(this.key == "F# Harmonic Minor"){
-            
+
             key_array = ["cs4", "cs4", "d4", "e4", "e4", "fs4", "fs4", "gs4", "gs4", "a4", "a4", "b4", "cs5", "cs5", "d5", "e5", "e5", "fs5", "fs5", "gs5", "gs5", "a5", "a5", "b5", "cs6", "cs6", "d6", "e6", "e6", "fs6", "fs6", "gs6", "gs6", "a6", "a6", "b6"]
-            
+
           }
           if(this.key == "G Harmonic Minor"){
-            
+
             key_array = ["c4", "d4", "d4", "ds4", "f4", "f4", "g4", "g4", "a4", "a4", "as4", "as4", "c5", "d5", "d5", "ds5", "f5", "f5", "g5", "g5", "a5", "a5", "as5", "as5", "c6", "d6", "d6", "ds6", "f6", "f6", "g6", "g6", "a6", "a6", "as6", "as6"]
-            
+
           }
           if(this.key == "G# Harmonic Minor"){
-            
+
             key_array = ["cs4", "ds4", "ds4", "e4", "fs4", "fs4", "gs4", "gs4", "as4", "as4", "b4", "cs5", "ds5", "ds5", "e5", "fs5", "fs5", "gs5", "gs5", "as5", "as5", "b5", "cs6", "ds6", "ds6", "e6", "fs6", "fs6", "gs6", "gs6", "as6", "as6", "b6"]
-            
+
           }
-          
+
+          var array_length = key_array.length
+          var new_array = []
+          var intify = ''
+          var intify2 = ''
+
+
+          if(this.first_octave == true){
+
+            intify = array_length/3
+            key_array = key_array.slice(0,intify)
+
+          }
+          if(this.second_octave == true){
+
+            intify = array_length/3
+            intify2 = array_length*(2/3)
+            key_array = key_array.slice(intify, intify2)
+
+          }
+          if(this.third_octave == true){
+
+            intify = array_length*(2/3)
+            key_array = key_array.slice(intify)
+
+          }
+
+          if(this.two_notes == true){
+
+            var is_even = Number(this.number)
+            var y = 2
+            var ret = is_even % y + is_even
+            this.number = ret
+
+          }
+
+          array_length = key_array.length
+
+
           var keyCoordsA = [0, 43.1, 75.8, 120.2, 152.9, 195.9, 239, 271.7, 310.2, 342.9, 381.4, 414.1]
           var keyCoordsC = [43.1, 32.7, 44.4, 32.7, 43.1, 43.1, 32.7, 38.5, 32.7, 38.5, 32.7, 43.1]
           var keyCoordsD = [215.7, 215.5, 215.7, 215.5, 215.7, 215.7, 215.5, 215.7, 215.5, 215.7, 215.5, 215.7]
@@ -918,17 +1106,26 @@
           var keyCoordsF = [215.71, 326.5, 215.71, 326.5, 215.71, 215.5, 326.5, 215.71, 326.5, 215.71, 326.5, 215.71]
           var keyCoordsG = [65.3, 32.7, 65.3, 32.7, 65.3, 65.3, 32.7, 65.3, 32.7, 65.3, 32.7, 65.3]
           var keyCoordsH = [326.5, 215.5, 326.5, 215.5, 326.5, 326.5, 215.5, 326.5, 215.5, 326.5, 215.5, 326.5]
-          var keyColors = ["#FFCBDF", "#ECD61B", "#C5FD9F", "#FF8500", "#F2FC74", "#FFD275", "#8EDEAD", "#CB8807", "#CF3A76", "#F83B3B", "#30D1CA", "#C2EFF5"]
-          
+          var keyColors = ["#FFCBDF", "#dd99ff", "#C5FD9F", "#3333ff", "#ffff1a", "#ff8533", "#b3cccc", "#8a8a5c", "#CF3A76", "#ff471a", "#00ccff", "#C2EFF5"]
+
           var save = ''
-          
+
+          randomInt = parseInt(Math.random() * array_length)
+
+
           for (var i = 0; i < this.number; i++){
-            
-            randomInt = parseInt(Math.random() * array_length)
-            this.melody[i] = key_array[randomInt]
-            save = this.melody[i].length
-            this.melody_string[i] = key_array[randomInt].slice(0,save-1)
-            
+            if(this.scale_mode == true){
+
+              this.stepwise(key_array)
+              return
+
+            }else{
+              randomInt = parseInt(Math.random() * array_length)
+              this.melody[i] = key_array[randomInt]
+              save = this.melody[i].length
+              this.melody_string[i] = key_array[randomInt].slice(0, save-1)
+            }
+
             if(this.melody_string[i] == "c"){
               this.colorOn[i] = keyColors[0]
               this.coordAtA[i] = keyCoordsA[0]
@@ -1049,20 +1246,20 @@
               this.coordAtG[i] = keyCoordsG[11]
               this.coordAtH[i] = keyCoordsH[11]
             }
-            
+
           }
-          
+
           this.check_string = this.melody_string.join("")
           this.count = 0
-          
+
         },
-        
+
         showIt: function(){
-          
+
           var i = this.count
-          
+
          if(this.count > 0 && this.reveal == true){
-            
+
             this.show = this.melody[i-1]
             var canvas= document.getElementById("myCanvas")
             var ckey = canvas.getContext("2d")
@@ -1072,9 +1269,9 @@
             ckey.lineWidth = 1
             ckey.strokeStyle=this.colorOn[i-1]
             ckey.strokeRect(this.coordAtE[i-1],this.coordAtF[i-1],this.coordAtG[i-1],this.coordAtH[i-1])
-            
+
           }else if(this.reveal == true){
-            
+
             this.show = this.melody[i]
             var canvas= document.getElementById("myCanvas")
             var ckey = canvas.getContext("2d")
@@ -1084,72 +1281,185 @@
             ckey.lineWidth = 1
             ckey.strokeStyle=this.colorOn[i]
             ckey.strokeRect(this.coordAtE[i],this.coordAtF[i],this.coordAtG[i],this.coordAtH[i])
-            
-          }  
-          
-        },
-        
-        nextOne: function() {
-          
-          var i = this.count
-          
-         
-         if(this.count > 0 && this.reveal==true){
-            var canvas= document.getElementById("myCanvas")
-            var ckey = canvas.getContext("2d")
-            ckey.clearRect(0, 0, canvas.width, canvas.height)
-            makeBoard()
-              
-          }else if(this.reveal== true){
-            var canvas= document.getElementById("myCanvas")
-            var ckey = canvas.getContext("2d")
-            ckey.clearRect(0, 0, canvas.width, canvas.height)
-            makeBoard()
-            
+
           }
-          
+
+        },
+
+        nextOne: function() {
+
+          var i = this.count
+
+
+         if(this.count > 0 && this.reveal==true){
+
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.clearRect(0, 0, canvas.width, canvas.height)
+            makeBoard()
+
+          }else if(this.reveal== true){
+
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.clearRect(0, 0, canvas.width, canvas.height)
+            makeBoard()
+
+          }
+
           var note = this.melody[i]+""
           var pitch = document.getElementById(note)
           pitch.load()
           pitch.play()
           this.count = this.count+1
-          
+
         },
-        
+
+        stepwise: function(key_array){// minor bug fix
+
+          this.melody = []
+          var two_three_or_four = [2, 3, 4]
+          var randomInt234 = parseInt(Math.random() * 3)
+          var group_of = two_three_or_four[randomInt234]
+          var i = 0
+          var remains = this.number
+          var total = 0
+          var array_length = key_array.length
+          var randomInt = parseInt(Math.random() * array_length)
+          var randomIntAD = parseInt(Math.random() * 2)
+          var one_or_neg_one = [1, -1]
+          var ascend_descend = one_or_neg_one[randomIntAD]
+          var save = ''
+
+
+          while(i <= group_of){
+
+            if(i == group_of){// we count when i = groupof like 0 for the new round so start i at 1
+
+              remains = remains - group_of //remains will equal 0 until i equals group_of
+              randomInt234 = parseInt(Math.random() * 3)
+              group_of = two_three_or_four[randomInt234]
+              randomIntAD = parseInt(Math.random() * 2)
+              ascend_descend = one_or_neg_one[randomIntAD]
+              randomInt = parseInt(Math.random() * array_length)
+              i = 1
+
+            }
+            if(remains <= 4 && remains > 0){
+
+              group_of = remains
+
+            }
+
+            if(total == this.number){
+
+              break
+
+            }
+
+            this.melody[total] = key_array[randomInt]
+            save = this.melody[total].length
+            this.melody_string[total] = key_array[randomInt].slice(0, save-1)
+            i++
+            total++
+            randomInt = randomInt + ascend_descend
+
+
+            if(randomInt == array_length){
+
+              ascend_descend = -1
+              randomInt = randomInt - 2
+
+            }else if(randomInt < 0){
+
+              ascend_descend = 1
+              randomInt = randomInt + 2
+
+            }
+          }
+          this.check_string = this.melody_string.join("")
+          this.count = 0
+        },
+
+        dubs: function(){
+
+          var i = this.count
+          var melength = this.melody.length
+
+          if(this.count > 0 && this.reveal == true){
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.clearRect(0, 0, canvas.width, canvas.height)
+            makeBoard()
+
+          }else if(this.reveal== true){
+            var canvas= document.getElementById("myCanvas")
+            var ckey = canvas.getContext("2d")
+            ckey.clearRect(0, 0, canvas.width, canvas.height)
+            makeBoard()
+
+          }
+
+          if(i < melength){
+
+            var note = this.melody[i]+""
+            var other_note = this.melody[i+1]+""
+            var pitch = document.getElementById(note)
+            var other_pitch = document.getElementById(other_note)
+            pitch.load()
+            other_pitch.load()
+            pitch.play()
+            other_pitch.play()
+            this.count = this.count+2
+
+          }else{
+
+            return
+
+          }
+
+        },
+
         playButton: function(event){
-        
+
           document.getElementById("focus").focus()
           this.count = 0
           var end = this.melody.length-1
           if(this.reveal == true){
-            
+
             this.assessment = this.check_string
-            
-            
+
+
           }
           if(this.first == true){
-            
+
             this.assessment = this.melody[0]
           }
-          
+
           if(this.reveal == true){
             var canvas = document.getElementById("myCanvas")
             var ckey = canvas.getContext("2d")
             ckey.clearRect(0,0,canvas.width,canvas.height)
             makeBoard()
           }
-          
+
           if(event){
             clearInterval(this.timer)
-            
+
           }
-          
-          var millisec = this.speed
-          this.timer = setInterval(this.nextOne, millisec)
-          
+          if(this.two_notes == true){
+
+            var millisec = this.speed
+            this.timer = setInterval(this.dubs, millisec)
+
+          }else{
+
+            var millisec = this.speed
+            this.timer = setInterval(this.nextOne, millisec)
+
+          }
         }
       }
     })
-
   </script>
 </html>
